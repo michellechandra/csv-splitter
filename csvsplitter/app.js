@@ -12,32 +12,20 @@ var app = express();
 
 app.get('/:anything', function (req, res) {
 
-  //SODA API defaults to 1000, set the limit higher than what we will need for 90 days
-  var sourceLimit = 1000000;
-
-  //get a date string for 90 days ago
-  var ninety_days_ago = moment().subtract(90, 'days').format('YYYY-MM-DD')
-
-  //SODA API Template
-  var sourceTemplate = 'https://data.cityofnewyork.us/resource/fhrw-4uyv.csv?$LIMIT={{sourceLimit}}&$ORDER=created_date%20DESC&$WHERE=created_date>=%27{{ninety_days_ago}}%27';
-
-  //build a SODA API call
-  var sourceURL = Mustache.render( sourceTemplate, { 
-    sourceLimit: sourceLimit,
-    ninety_days_ago: ninety_days_ago 
-  });
-
   //set Content-disposition header so that browsers will treat it as a download
+  // set response/output as a csv download?
   res.setHeader('Content-disposition', 'attachment; filename=data.csv');
 
-  //GET the API call and pipe it to the response
-  request.get(sourceURL)
+  var datasource = 'datasource.csv';
+
+  //GET the data and pipe it to the response
+  request.get(datasource)
     .on('end', function() {
       res.end();
     })
-    .pipe(split2(), { end: false })
-    .pipe(transform)
-    .pipe(res);
+    .pipe(split2(), { end: false }) // break up stream and reassemble each line as a chunk
+    .pipe(transform) // call transform function on each chunk to convert timestamps to GMT
+    .pipe(res); // pipe response to browser as CSV download?
 });
 
 
