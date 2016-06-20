@@ -4,13 +4,13 @@
 
 1) Create an account with [Heroku](http://www.heroku.com) 
 
-2) Download [node.js](http://nodejs.org/). Verify that node is installed on your machine with the ```node``` command in Terminal. If you don't get an error, it's installed! You can exit the node process with Ctrl+c.
+2) Download [node.js](http://nodejs.org/). Verify that node is installed on your machine with the ```node``` command in Terminal. If you don't get an error, it's installed! You can exit the node process with Ctrl+c. You can run the app locally using the command ```node app.js```
 
 3) Download and install the [Heroku Toolbelt](https://toolbelt.heroku.com), which will give you the Heroku Command Line Interface.
 
 4) Download this repo and navigate to the folder with Terminal
 
-5) Run ```npm install package.json``` to get all required libraries.
+5) Run ```npm install``` to get all required libraries. Run ```npm install through2``` to install through2 module.
 
 6) Login to Heroku
 

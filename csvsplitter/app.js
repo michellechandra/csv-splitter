@@ -16,7 +16,7 @@ app.get('/:anything', function (req, res) {
   // set response/output as a csv download?
   res.setHeader('Content-disposition', 'attachment; filename=data.csv');
 
-  var datasource = 'datasource.csv';
+  var datasource = 'http://api.sos.ca.gov/api/status?format=csv&file=16PP';
 
   //GET the data and pipe it to the response
   request.get(datasource)
@@ -37,17 +37,20 @@ var server = app.listen(port, function () {
 
 //transform function, finds all timestamps and converts them to GMT
 var transform = through2(function(chunk, encoding, cb) {
-  chunk = chunk.toString();
 
-  chunk = chunk.replace(/(\d{4}\-\d\d\-\d\d[tT][\d:\.]*)/g, function(match) {
-    var newTime = shiftTime(match);
-    return shiftTime(match);
-  });
+  console.log('transform the data');
+  
+  // chunk = chunk.toString();
 
-  //re-add the newline character
-  chunk += '\n';
+  // chunk = chunk.replace(/(\d{4}\-\d\d\-\d\d[tT][\d:\.]*)/g, function(match) {
+  //   var newTime = shiftTime(match);
+  //   return shiftTime(match); // callback runs shiftTime()
+  // });
 
-  cb(null, chunk);
+  // //re-add the newline character
+  // chunk += '\n';
+
+  // cb(null, chunk); 
 })
   .on('error', function(err) {
   console.log(err, err.toString());
@@ -55,9 +58,9 @@ var transform = through2(function(chunk, encoding, cb) {
 
 //shift time to GMT
 function shiftTime(timestamp) {
-  if(timestamp.length > 0 ) {
-    timestamp = moment(timestamp).add(5,'hours').format('MM/DD/YYYY HH:mm:ss');
-  }
+ // if(timestamp.length > 0 ) {
+ //   timestamp = moment(timestamp).add(5,'hours').format('MM/DD/YYYY HH:mm:ss');
+  //}
 
-  return timestamp;
+  //return timestamp;
 }
