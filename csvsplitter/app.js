@@ -58,6 +58,7 @@ var transform = through2(function(chunk, encoding, cb) {
 
 //shift time to GMT
 function shiftTime(timestamp) {
+  console.log('shiftTime callback');
  // if(timestamp.length > 0 ) {
  //   timestamp = moment(timestamp).add(5,'hours').format('MM/DD/YYYY HH:mm:ss');
   //}
