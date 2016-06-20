@@ -2,7 +2,7 @@
 
 ### Directions to Install with Heroku
 
-1) Create an account with Heroku 
+1) Create an account with [Heroku](http://www.heroku.com) 
 
 2) Download [node.js](http://nodejs.org/). Verify that node is installed on your machine with the ```node``` command in Terminal. If you don't get an error, it's installed! You can exit the node process with Ctrl+c.
 
@@ -10,7 +10,7 @@
 
 4) Download this repo and navigate to the folder with Terminal
 
-5) Run ```npm install``` to get all required libraries.
+5) Run ```npm install package.json``` to get all required libraries.
 
 6) Login to Heroku
 
