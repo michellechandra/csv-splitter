@@ -1,6 +1,6 @@
 # Proxy APP to Import CSV to CartoDB
 
-### Directions to Install with Heroku
+### Directions to Install Manually with Heroku
 
 1) Create an account with [Heroku](http://www.heroku.com) 
 
